@@ -1,4 +1,4 @@
-\documentclass[stu, 11pt, a4paper, floatsintext]{apa7}
+\documentclass[stu, 11pt, a4paper, floatsintext, noextraspace]{apa7}
 
 \usepackage[american]{babel}
 \usepackage[T1]{fontenc}
@@ -10,6 +10,9 @@
 \usepackage{mathtools}
 \usepackage{amssymb}
 \usepackage{cleveref}
+\usepackage{setspace}
+
+\onehalfspacing
 
 \graphicspath{{src/images/}}
 
@@ -43,11 +46,8 @@
 	The absolute visual magnitude is the first value to be calculated. It is equal to the apparent magnitude when a stellar object is viewed from the distance of 10 parsecs, without the consideration of astronomical extinction happening due to cosmic dust and other space matter; see \cref{eq1:abs_vis_magn}.
 	\begin{equation}
 		\label{eq1:abs_vis_magn}
-		M_v=m-5\left(\log_{10}d_{pc} - 1\right)=m-2.5log_{10}\left(\frac{d}{10}\right)^2
+		M_v=m-5\left(\log_{10}d_{pc} - 1\right)=m-2.5log_{10}\left(\frac{d}{10}\right)^2; \delta M_v=\sqrt{\frac{4.71529\delta^2d}{d^2}+\delta^2m}
 	\end{equation}
-	\begin{equation*}
-		\delta M_v=\sqrt{\frac{4.71529\delta^2d}{d^2}+\delta^2m}
-	\end{equation*}
 	\begin{center}
 		Where $M_v$ is the absolute visual magnitude,
 		
@@ -61,11 +61,8 @@
 	The absolute bolometric magnitude is an absolute magnitude of a stellar object, which considers electromagnetic radiation on all of the spectrum, not just the one visible from the Earth; see \cref{eq2:abs_bol_magn}.
 	\begin{equation}
 		\label{eq2:abs_bol_magn}
-		M_{bol}=M_v+BC
+		M_{bol}=M_v+BC; \delta M_{bol} = \delta M_v
 	\end{equation}
-	\begin{equation*}
-		\delta M_{bol} = \delta M_v
-	\end{equation*}
 	\begin{center}
 		Where $M_{bol}$ is the absolute bolometric magnitude,
 		
@@ -75,11 +72,8 @@
 	It is now possible to calculate the star luminosity. It is defined to be the amount of power a star emits in a unit of time. The relationship between the luminosity and the absolute bolometric magnitude is seen in \cref{eq3:luminosity}.
 	\begin{equation}
 		\label{eq3:luminosity}
-		M_{bol}=-2.5log_{10}\frac{L}{L_0} \therefore L=L_010^{-0.4M_{bol}}
+		M_{bol}=-2.5log_{10}\frac{L}{L_0} \therefore L=L_010^{-0.4M_{bol}}; \delta L = 0.921034\sqrt{e^{-1.84207M_{bol}}L_0^2\delta^2M_{bol}}
 	\end{equation}
-	\begin{equation*}
-		\delta L = 0.921034\sqrt{e^{-1.84207M_{bol}}L_0^2\delta^2M_{bol}}
-	\end{equation*}
 	\begin{center}
 		Where $L$ is the luminosity, $[W]$,
 		
@@ -105,11 +99,8 @@
 	At last, all the required pieces of information are present, so the star's radius can be calculated; see \cref{eq5:star_radius}.
 	\begin{equation}
 		\label{eq5:star_radius}
-		L=4\pi R_{st}^2\sigma T^4 \therefore R_{st}=\sqrt{\frac{L}{4\pi\sigma T^4}}
+		L=4\pi R_{st}^2\sigma T^4 \therefore R_{st}=\sqrt{\frac{L}{4\pi\sigma T^4}}; \delta R_{st}=\frac{\sqrt{\frac{16L^2\delta^2T+T^2}{L\sigma T^6}}}{4\sqrt{\pi}}
 	\end{equation}
-	\begin{equation*}
-		\delta R_{st}=\frac{\sqrt{\frac{16L^2\delta^2T+T^2}{L\sigma T^6}}}{4\sqrt{\pi}}
-	\end{equation*}
 	\begin{center}
 		Where $R_{st}$ is the radius of the star, $[m]$,
 		
@@ -121,11 +112,8 @@
 	I have assumed, that if one were to build the Dyson ring in our solar system, its orbit would be in the vicinity of the orbit of Mercury. So, to obtain the radiuses of the megastructure around other stars, I wrote a proportion. In this way, the ratio between the star radius and the radius of the ring stays the same; see \cref{eq6:dyson_ring_orbit_radius}.
 	\begin{equation}
 		\label{eq6:dyson_ring_orbit_radius}
-		\frac{R_{mc}}{R_{sun}}=\frac{R_{dr}}{R_{st}} \therefore R_{dr}=\frac{R_{st}R_{mc}}{R_{sun}}
+		\frac{R_{mc}}{R_{sun}}=\frac{R_{dr}}{R_{st}} \therefore R_{dr}=\frac{R_{st}R_{mc}}{R_{sun}}; \delta R_{dr}=\delta R_{st}\frac{R_{mc}}{R_{sun}}
 	\end{equation}
-	\begin{equation*}
-		\delta R_{dr}=\delta R_{st}\frac{R_{mc}}{R_{sun}}
-	\end{equation*}
 	\begin{center}
 		Where $R_{dr}$ is the radius of a Dyson ring, $[m]$,
 		
@@ -171,11 +159,8 @@
 	The only uncalculated property of the Dyson ring is the number of the satellites surrounding the star. To calculate it, besides the diameter of one satellite, the spacing between the two of them should also be known. I consider the distance of 1000km sufficient. The reasoning is that with the said distance, in case of an outside impact, they will probably not collide. Each satellite is separated from its two neighbours by 1000km; this means the number of gaps would be the same as the number of satellites. So, the number of "satellite-gap" pairs is expressed by \cref{eq8:solar_panel_number}.
 	\begin{equation}
 		\label{eq8:solar_panel_number}
-		N_{sp}=\left\lfloor\frac{2\pi R_{dr}}{R_{sp} + 10^6m}\right\rfloor
+		N_{sp}=\left\lfloor\frac{2\pi R_{dr}}{R_{sp} + 10^6m}\right\rfloor; \delta N_{sp}=\delta R_{dr}\frac{2\pi }{R_{sp} + 10^6m}
 	\end{equation}
-	\begin{equation*}
-		\delta N_{sp}=\delta R_{dr}\frac{2\pi }{R_{sp} + 10^6m}
-	\end{equation*}
 	\begin{center}
 		Where $N_{sp}$ is the number of solar panels
 	\end{center}
@@ -201,11 +186,8 @@
 	The amount of power incident on this scaled solar panel area and the actual solar panel is the same; it is only the irradiance that will differ by the inverse square of the distance, due to the Inverse-Square law. So, as the star's luminosity is the measure of power it emits, the power emitted from this scaled area is obtained by solving a proportion; see \cref{eq10:solar_panel_input}.
 	\begin{equation}
 		\label{eq10:solar_panel_input}
-		\frac{L}{S_{st}} = \frac{P_{sp}}{S_{sps}} \therefore P_{sp} = \frac{LS_{sps}}{S_{st}}=\frac{LS_{sps}}{4\pi R_{st}^2}
+		\frac{L}{S_{st}} = \frac{P_{sp}}{S_{sps}} \therefore P_{sp} = \frac{LS_{sps}}{S_{st}}=\frac{LS_{sps}}{4\pi R_{st}^2}; \delta P_{sp}=\frac{\sqrt{\frac{S_{sps}^2R_{st}^2 + L^2\delta^2S_{sps}R_{st}^2+4L^2S_{sps}^2\delta^2R_{st}}{R_{st}^6}}}{4\pi}
 	\end{equation}
-	\begin{equation*}
-		\delta P_{sp}=\frac{\sqrt{\frac{S_{sps}^2R_{st}^2 + L^2\delta^2S_{sps}R_{st}^2+4L^2S_{sps}^2\delta^2R_{st}}{R_{st}^6}}}{4\pi}
-	\end{equation*}
 	\begin{center}
 		Where $P_{sp}$ is the power incident on the solar panel, $[W]$
 	\end{center}
@@ -213,11 +195,8 @@
 	The total power input of the Dyson ring is equal to the full irradiance times the combined surface area of all orbiting satellites. \Cref{eq11:dyson_ring_input} gives the total energy input of the megastructure.
 	\begin{equation}
 		\label{eq11:dyson_ring_input}
-		P_i=E_eS_{sp}N_{sp}
+		P_i=E_eS_{sp}N_{sp}; \delta P_i=\sqrt{\delta^2E_eS_{sp}^2N_{sp}^2+E_e^2\delta^2S_{sp}^2N_{sp}^2+E_e^2S_{sp}^2\delta^2N_{sp}}
 	\end{equation}
-	\begin{equation*}
-		\delta P_i=\sqrt{\delta^2E_eS_{sp}^2N_{sp}^2+E_e^2\delta^2S_{sp}^2N_{sp}^2+E_e^2S_{sp}^2\delta^2N_{sp}}
-	\end{equation*}
 	\begin{center}
 		Where $P_{i}$ is the total power input of the Dyson ring, $[W]$
 	\end{center}
@@ -225,11 +204,8 @@
 	In the real world, no mechanism works with 100\% efficiency. Currently, the efficiency of solar panels on Earth is approximately 20\%. In space, due to the lack of atmosphere, their efficiency can reach 37,6\% \Parencite{kotamraju_modeling_2019}. \Cref{eq12:dyson_ring_output} gives the total power output of the Dyson ring.
 	\begin{equation}
 		\label{eq12:dyson_ring_output}
-		P_o=0.376P_i
+		P_o=0.376P_i; \delta P_o=0.376\delta P_i
 	\end{equation}
-	\begin{equation*}
-		\delta P_o=0.376\delta P_i
-	\end{equation*}
 	\begin{center}
 		Where $P_{o}$ is the total power output of the Dyson ring, $[W]$
 	\end{center}
@@ -276,7 +252,7 @@
 		\figurenote{This figure demonstrates an example of a star information page. The information highlighted is used in the investigation. The values in square brackets are the absolute uncertainties}
 		\label{fig2:star_data}
 	\end{figure}
-	\begin{figure}
+	\begin{figure}[h!]
 		\centering
 		\caption{Example star measurements section}
 		\includegraphics[width=1.0\textwidth]{Star_Measurements}

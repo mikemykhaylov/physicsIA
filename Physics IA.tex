@@ -41,6 +41,41 @@
 	\section{Investigation process}
 	\subsection{Collecting Star Information}
 	All of the starting data has been collected from the SIMBAD Astronomical Database \Parencite{wenger_simbad_2000}. The search was performed using the criteria queries. \Cref{fig1:query,fig2:star_data,fig3:star_measurements} demonstrate examples of star data query and the data page of a sample star. \Cref{tab1:collected_star_data} demonstrates the data collected for the stars.
+	\begin{figure}[h!]
+		\centering
+		\caption{Example query for a star of B5II class}
+		\includegraphics[width=1.0\textwidth]{SIMBAD_Query}
+		\figurenote{This figure demonstrates an example of a query performed to gather the information about the stars studies. Distance.distance > 0 ensures we are shown only stars with known distances}
+		\label{fig1:query}
+	\end{figure}
+	\begin{figure}[h!]
+		\centering
+		\caption{Example star information page}
+		\includegraphics[width=1.0\textwidth]{Star_Basic_data}
+		\figurenote{This figure demonstrates an example of a star information page. The information highlighted is used in the investigation. The values in square brackets are the absolute uncertainties}
+		\label{fig2:star_data}
+	\end{figure}
+	\begin{figure}[h!]
+		\centering
+		\caption{Example star measurements section}
+		\includegraphics[width=1.0\textwidth]{Star_Measurements}
+		\figurenote{This figure demonstrates an example of a star measurements section in the information page. The information highlighted is used in the investigation. The values under err± are the absolute uncertainties}
+		\label{fig3:star_measurements}
+	\end{figure}
+	\begin{table}[h!]
+		\caption{The collected star data}
+		\label{tab1:collected_star_data}
+		\begin{tabular}{@{}lrrrr@{}} \toprule
+			SIMBAD Name & Spectral class & Distance (pc) & \begin{tabular}[c]{@{}r@{}}Apparent visual\\ magnitude (Blue)\end{tabular} &
+  \begin{tabular}{@{}r@{}}Apparent visual\\ magnitude (Visible)\end{tabular} \\ \midrule
+			HD 120578    & B5II  & 969,462±37,312 & 8±0,010      & 8±0,010      \\
+			HD 16769     & A5III & 131,681±1,360  & 6,059±0,014  & 5,945±0,009  \\
+			HD 176095    & F5IV  & 55,135±0,091   & 6,667±0,015  & 6,207±0,010  \\
+			HD 154857    & G5V   & 63,564±0,156   & 7,93±0,010   & 7,24±0,010   \\
+			V* V1147 Tau & K5V   & 46,786±0,099   & 12,189±0,010 & 11±0,011     \\
+			L 923-22     & M5V   & 10,507±0,009   & 13,18±0,010  & 11,676±0,010	
+		\end{tabular}
+	\end{table}
 	\subsection{Computing Stars Properties}
 	To create the foundation of the investigation, I shall first calculate some star properties. For instance, I need the star's luminosity to calculate the power output, as well as the radius, required to calculate the orbit radius and the size of Dyson ring satellites. The input data consists of three values for each star: the distance to the star and apparent visual magnitudes of 2 different spectres of Johnson-Morgan system: Blue and Visual. These values are sufficient to calculate all the needed properties of stars.
 	\subsubsection{Absolute Visual Magnitude}
@@ -60,6 +95,7 @@
 	When converting from an absolute magnitude of some band to a bolometric one, one must account for the bolometric correction. It is the correction that forecasts the expected bolometric magnitude of a stellar object based on its magnitude in a specific band, usually K (visible light, for hotter stars) or V (near-infrared light, for colder stars). In the present case, the correction would be different for each star, as all of them are of different spectral classes; see \Cref{tab2:bolometric_corr}.
 	\subsubsection{Absolute Bolometric Magnitude}
 	The absolute bolometric magnitude is an absolute magnitude of a stellar object, which considers electromagnetic radiation on all of the spectrum, not just the one visible from the Earth; see \cref{eq2:abs_bol_magn}.
+	\newpage
 	\begin{equation}
 		\label{eq2:abs_bol_magn}
 		M_{bol}=M_v+BC; \delta M_{bol} = \delta M_v
@@ -69,6 +105,20 @@
 		
  		$BC$ is the bolometric correction
 	\end{center}
+	\begin{table}[h!]
+		\caption{The bolometric corrections for different star classes}
+		\label{tab2:bolometric_corr}
+		\begin{tabular}{@{}lrr@{}} \toprule
+			SIMBAD Name  & Spectral class & Bolometric Correction \\ \midrule
+			HD 120578    & B5II           & -1.15                 \\
+			HD 16769     & A5III          & -0.14                 \\
+			HD 176095    & F5IV           & -0.15                 \\
+			HD 154857    & G5V            & -0.21                 \\
+			V* V1147 Tau & K5V            & -0.21                 \\
+			L 923-22     & M5V            & -2.73     
+		\end{tabular}
+		\tablenote{Table adapted from \cite{aller_landolt-bornstein_1982}}
+	\end{table}
 	\subsubsection{Luminosity}
 	It is now possible to calculate the star luminosity. It is defined to be the amount of power a star emits in a unit of time. The relationship between the luminosity and the absolute bolometric magnitude is seen in \cref{eq3:luminosity}.
 	\begin{equation}
@@ -124,7 +174,6 @@
 	\end{center}
 	\subsubsection{Satellite Surface Area}
 	In this investigation, the radius of the satellites would be considered to be 5km. The justification for this particular assumption is that it is the maximum viewing distance on Earth, should the satellites be built on an Earth-sized planet near the star. To ensure that every point of the satellite is the same distance from the star, it will also be curved, and therefore will be the same shape as the surface area of a spherical sector. \Cref{fig4:dyson_ring_satellite} demonstrates the form of the satellite.
-	
 	\Cref{eq7a:sector_surf_area} gives the surface area of the spherical sector (on the surface of the sphere).
 	\begin{equation}
 		\label{eq7a:sector_surf_area}
@@ -155,6 +204,13 @@
 	\begin{center}
 		Where $S_{sp}$ is the surface area of the solar panel, $[m^2]$
 	\end{center}
+	\begin{figure}[h!]
+		\centering
+		\caption{The structure of the satellite making up the Dyson ring}
+		\fitfigure[width=1.0\textwidth]{Spherical_Sector}
+		\figurenote{This figure demonstrates the shape of the satellite, that is making up the Dyson ring. The shape of the satellite is the yellow portion of the following image. $R_{sp}$ is the radius of the solar panel $[m]$, $h$ is the height of the cap $[m]$, $\theta$ is the half-cone angle $[rad]$}
+		\label{fig4:dyson_ring_satellite}
+	\end{figure}
 	Unfortunately, as the ratio $5000/R_{dr}$ is very close to 0, the spreadsheet application was unable to perform the calculations, so an external source was used, namely Wolfram Alpha. Also, because of such small curvature of a solar panel with 5000m radius compared to billions of meters which the radius of a Dyson ring is, such complex calculations have proven themselves unnecessary, as the simple $\pi r^2$ is accurate to 12 decimal places of the output of the formula above. Nevertheless, I am glad that I derived this formula, as it can be used in further research at smaller scales.
 	\subsubsection{Number of Satellites}
 	The only uncalculated property of the Dyson ring is the number of the satellites surrounding the star. To calculate it, besides the diameter of one satellite, the spacing between the two of them should also be known. I consider the distance of 1000km sufficient. The reasoning is that with the said distance, in case of an outside impact, they will probably not collide. Each satellite is separated from its two neighbours by 1000km; this means the number of gaps would be the same as the number of satellites. So, the number of "satellite-gap" pairs is expressed by \cref{eq8:solar_panel_number}.
@@ -169,6 +225,13 @@
 	The final step of the investigation is obtaining energy measurements. In the end, I seek to retrieve the total irradiance, incident on one solar panel, which will then be used to calculate the full power input of the Dyson ring. After that, I will graph it against the temperature and discuss the type of relation found.
 	\subsubsection{Satellite surface area scaled on the star}
 	To determine the irradiance, one shall calculate the amount of power incident on the solar panel. However, because the star is considered a non-zero sized light source, I am unable to calculate the incident power on the satellite by utilising a simple proportion. However, if the panel is scaled from the Dyson ring radius to the star radius, the incident power would be equal to the ratio of the star surface area covered by the scaled panel times the star's luminosity. \Cref{fig5:solar_panel_scaling} demonstrates the scheme of the process. \Cref{eq9:solar_panel_area_scaled} demonstrates the formula for the scaled solar panel area
+	\begin{figure}[h!]
+		\centering
+		\caption{The Scheme of the Solar Panel Scaling}
+		\fitfigure[width=1.0\textwidth]{Solar_Panel_Scaling}
+		\figurenote{This figure demonstrates the scheme of scaling down the solar panel for it to lay on the star surface. By doing so, one can calculate the power incident on the panel. Not to scale}
+		\label{fig5:solar_panel_scaling}
+	\end{figure}
 	\begin{equation}
 		\label{eq9:solar_panel_area_scaled}
 		\frac{S_{sp}}{S_{dr}} = \frac{S_{sps}}{S_{st}} \therefore S_{sps} = \frac{S_{sp}S_{st}}{S_{dr}} = \frac{4\pi R^2_{st}S_{sp}}{4\pi R^2_{dr}}=\frac{R^2_{st}S_{sp}}{R^2_{dr}}
@@ -222,96 +285,9 @@
 	\begin{center}
 		Where $P_{spo}$ is the the total power output of one solar panel, $[W]$
 	\end{center}
+	\newpage
 	\section{Analysing the Retrieved Data}
-	\Cref{tab3:star_properties,tab4:dyson_ring_properties,tab5:energy} demonstrate the calculated values for the selected stars. \Cref{tab6:star_properties_unc,tab7:dyson_ring_properties_unc,tab8:energy_unc} demonstrate the uncertainties of calculated values for the selected stars. To find a relation between the temperature and the power incident, I have plotted the data points on the graph and drawn the best-fit lines. The best-fit line equation with  (coefficient of determination) closest to 1 and sensible data predictions would be chosen as the most accurate. \Cref{fig6:best_fit_lines} demonstrates the regressions considered, which are linear, exponential and quadratic, as, with only 6 data points, a problem of overfitting might arise with cubic and quartic formulas.
-	
-	Although the quadratic regression has the greatest $R^2$ of the three, it can be seen that it approaches a non-zero value with near-zero temperatures. Therefore, it cannot be considered a valid model of the solar panel power output, as no energy can be extracted from the absence of a star. As for the linear model, it has the lowest $R^2$ of the three and goes into negatives at around 4400 Kelvin, which does not make physical sense. Finally, the exponential function does get relatively close to the origin at (0, 0) and does not go into negative values. Moreover, the coefficient of determination is very close to 1. Consequently, it shall be considered the appropriate model for the relation.
-	\section{Conclusion and Evaluation}
-	From the relation found, a few conclusions can be drawn. Firstly, the energy collected by a single solar panel grows much quicker than the temperature, as they are related by an exponential formula. For example, when considering a pair of stars with temperatures of 4000 and 8000, respectively, the difference between the energy collected is almost eight times. Therefore, at first glance, it is much more efficient to build a Dyson Ring around a hotter, B or A-class star. However, such hot stars are scarce in the universe, and because of their temperature, their lifespan is very short, at around 40 million years. Moreover, the amount of the building material needed for constructing a structure enveloping this big of a star would be prodigious. Because of that, for a more permanent solution, a K or G class star would be a better fit. There is an abundance of them in the universe, they are much smaller, and their lifespan is immeasurably longer at around 20 to 70 billion years. They emit their energy at a slower rate, but for far longer, which makes them an excellent fit for an interstellar species, which humanity might become one day.
-	
-	The uncertainties of the final results are tolerable at the scales considered, with 4-18 per cent on energy collected and 0.5-2 on the star temperature. The primary source of them is the distance uncertainty, which gets bigger the further the star is from the Earth.
-	
-	This investigation is reliable to an extent, and its scope is mostly limited by the lack of data on other types of stellar objects. For example, I was unable to find an O, M or L class star with values and uncertainties present for their distances and magnitudes. Some other types of stars were not considered, such as T and Y class dwarves, as there is not enough information to proceed with calculations. Other inaccuracies present might be due to double-digit precision of bolometric correction and proven applicability of Ballesteros' formula only to colder stars. In the future, I would like to improve on this investigation by using new and improved data and methods.
-	
-	Furthermore, the investigation could have been improved by selecting more than one specimen of every star classes. For example, two more could have been chosen with 2-3 and 7-8 spectral subclasses to account for stars one the border of their classes. Expanded selection would have brought the total number of data points to 18, which would significantly raise the accuracy of the model.
-	
-	For further research, I created a spreadsheet document that can batch process the calculations of values and uncertainties given the star data, which allows for quick and easy investigation expansion. The graphs are updated in real-time and recreate a best-fit line with each new star added. The document gives me the ability to refine the model and make conclusions from it.
-	\printbibliography
-	\appendix
-	\section{SIMBAD Data Retrieval}
-	\begin{figure}[h!]
-		\centering
-		\caption{Example query for a star of B5II class}
-		\includegraphics[width=1.0\textwidth]{SIMBAD_Query}
-		\figurenote{This figure demonstrates an example of a query performed to gather the information about the stars studies. Distance.distance > 0 ensures we are shown only stars with known distances}
-		\label{fig1:query}
-	\end{figure}
-	\begin{figure}[h!]
-		\centering
-		\caption{Example star information page}
-		\includegraphics[width=1.0\textwidth]{Star_Basic_data}
-		\figurenote{This figure demonstrates an example of a star information page. The information highlighted is used in the investigation. The values in square brackets are the absolute uncertainties}
-		\label{fig2:star_data}
-	\end{figure}
-	\begin{figure}[h!]
-		\centering
-		\caption{Example star measurements section}
-		\includegraphics[width=1.0\textwidth]{Star_Measurements}
-		\figurenote{This figure demonstrates an example of a star measurements section in the information page. The information highlighted is used in the investigation. The values under err± are the absolute uncertainties}
-		\label{fig3:star_measurements}
-	\end{figure}
-	\begin{table}
-		\caption{The collected star data}
-		\label{tab1:collected_star_data}
-		\begin{tabular}{@{}lrrrr@{}} \toprule
-			SIMBAD Name & Spectral class & Distance (pc) & \begin{tabular}[c]{@{}r@{}}Apparent visual\\ magnitude (Blue)\end{tabular} &
-  \begin{tabular}{@{}r@{}}Apparent visual\\ magnitude (Visible)\end{tabular} \\ \midrule
-			HD 120578    & B5II  & 969,462±37,312 & 8±0,010      & 8±0,010      \\
-			HD 16769     & A5III & 131,681±1,360  & 6,059±0,014  & 5,945±0,009  \\
-			HD 176095    & F5IV  & 55,135±0,091   & 6,667±0,015  & 6,207±0,010  \\
-			HD 154857    & G5V   & 63,564±0,156   & 7,93±0,010   & 7,24±0,010   \\
-			V* V1147 Tau & K5V   & 46,786±0,099   & 12,189±0,010 & 11±0,011     \\
-			L 923-22     & M5V   & 10,507±0,009   & 13,18±0,010  & 11,676±0,010	
-		\end{tabular}
-	\end{table}
-	\begin{table}
-		\caption{The bolometric corrections for different star classes}
-		\label{tab2:bolometric_corr}
-		\begin{tabular}{@{}lrr@{}} \toprule
-			SIMBAD Name  & Spectral class & Bolometric Correction \\ \midrule
-			HD 120578    & B5II           & -1.15                 \\
-			HD 16769     & A5III          & -0.14                 \\
-			HD 176095    & F5IV           & -0.15                 \\
-			HD 154857    & G5V            & -0.21                 \\
-			V* V1147 Tau & K5V            & -0.21                 \\
-			L 923-22     & M5V            & -2.73     
-		\end{tabular}
-		\tablenote{Table adapted from \cite{aller_landolt-bornstein_1982}}
-	\end{table}
-	\section{Structure schematics}
-	\begin{figure}[h!]
-		\centering
-		\caption{The structure of the satellite making up the Dyson ring}
-		\fitfigure[width=1.0\textwidth]{Spherical_Sector}
-		\figurenote{This figure demonstrates the shape of the satellite, that is making up the Dyson ring. The shape of the satellite is the yellow portion of the following image. $R_{sp}$ is the radius of the solar panel $[m]$, $h$ is the height of the cap $[m]$, $\theta$ is the half-cone angle $[rad]$}
-		\label{fig4:dyson_ring_satellite}
-	\end{figure}
-	\begin{figure}[h!]
-		\centering
-		\caption{The Scheme of the Solar Panel Scaling}
-		\fitfigure[width=1.0\textwidth]{Solar_Panel_Scaling}
-		\figurenote{This figure demonstrates the scheme of scaling down the solar panel for it to lay on the star surface. By doing so, one can calculate the power incident on the panel. Not to scale}
-		\label{fig5:solar_panel_scaling}
-	\end{figure}
-	\section{Data Representation}
-	\begin{figure}
-		\centering
-		\caption{Three Types of Regressions of Energy per Solar Panel versus the Star Temperature}
-		\fitfigure[width=1.0\textwidth]{Best_Fit_Lines}
-		\figurenote{The figure demonstrates the graphs of three best-fit lines. The dots on the graph represent the data points. First graph is a linear regression, second is the quadratic, and third is the exponential. Adapted from \cite{desmos_desmos_2020, wolfram_research_inc_wolframalpha_2020}}
-		\label{fig6:best_fit_lines}
-	\end{figure}
-	\section{Raw values and uncertainties}
+	\Cref{tab3:star_properties,tab4:dyson_ring_properties,tab5:energy} demonstrate the calculated values for the selected stars.
 	\begin{table}[h!]
 		\caption{Star Properties Calculations}
 		\label{tab3:star_properties}
@@ -324,21 +300,6 @@
 			HD 154857    & 3.224  & 3.014  & 1.877E+27 & 0.69 & 5636  & 1.616E+09 \\
 			V* V1147 Tau & 7.649  & 7.439  & 3.186E+25 & 1.19 & 4330  & 3.566E+08 \\
 			L 923-22     & 11.569 & 8.839  & 8.780E+24 & 1.50 & 3787  & 2.447E+08  
-		\end{tabular}
-		}
-	\end{table}
-	\begin{table}[h!]
-		\caption{Star Properties Calculations Uncertainties}
-		\label{tab6:star_properties_unc}
-		\resizebox{\textwidth}{!}{
-		\begin{tabular}{@{}lrrrrr@{}} \toprule
-			SIMBAD Name & \begin{tabular}{@{}r@{}}Apparent visual\\ magnitude (V)\end{tabular} & \begin{tabular}{@{}r@{}}Absolute bolo- \\ metric magnitude\end{tabular} & Luminosity, $[W]$  & Temperature, $[K]$ & Radius of star, $[m]$ \\ \midrule
-			* J Vel      & 0.084 & 0.084 & 3.995E+28 & 176 & 2.890E+08 \\
-			HD 16769     & 0.024 & 0.024 & 5.538E+26 & 156 & 8.269E+07 \\
-			HD 176095    & 0.011 & 0.011 & 3.384E+25 & 87  & 4.265E+07 \\
-			HD 154857    & 0.011 & 0.011 & 1.957E+25 & 49  & 2.809E+07 \\
-			V* V1147 Tau & 0.012 & 0.012 & 3.497E+23 & 29  & 4.854E+06 \\
-			L 923-22     & 0.010 & 0.010 & 8.229E+22 & 21  & 2.740E+06
 		\end{tabular}
 		}
 	\end{table}
@@ -357,22 +318,7 @@
 		\end{tabular}
 		}
 	\end{table}
-	\begin{table}
-		\caption{Dyson Ring Properties Calculations Uncertainties}
-		\label{tab7:dyson_ring_properties_unc}
-		\resizebox{\textwidth}{!}{
-		\begin{tabular}{@{}lrrr@{}} \toprule
-			SIMBAD Name & Dyson ring orbit radius, $[m]$ & Satellite surface area, $m^2$ & Number of satellites \\ \midrule
-			* J Vel      & 2.455E+10 & 5.473E+06 & 153506 \\
-			HD 16769     & 7.025E+09 & 4.026E+05 & 43919  \\
-			HD 176095    & 3.623E+09 & 6.134E+03 & 22652  \\
-			HD 154857    & 2.386E+09 & 1.051E+04 & 14917  \\
-			V* V1147 Tau & 4.124E+08 & 4.992E+03 & 2578   \\
-			L 923-22     & 2.327E+08 & 3.159E+03 & 1455  
-		\end{tabular}
-		}
-	\end{table}
-	\begin{table}
+	\begin{table}[h!]
 		\caption{Power Properties Calculations}
 		\label{tab5:energy}
 		\resizebox{\textwidth}{!}{
@@ -387,7 +333,40 @@
 		\end{tabular}
 		}
 	\end{table}
-	\begin{table}
+	\newpage
+	\Cref{tab6:star_properties_unc,tab7:dyson_ring_properties_unc,tab8:energy_unc} demonstrate the uncertainties of calculated values for the selected stars. 
+	\begin{table}[h!]
+		\caption{Star Properties Calculations Uncertainties}
+		\label{tab6:star_properties_unc}
+		\resizebox{\textwidth}{!}{
+		\begin{tabular}{@{}lrrrrr@{}} \toprule
+			SIMBAD Name & \begin{tabular}{@{}r@{}}Apparent visual\\ magnitude (V)\end{tabular} & \begin{tabular}{@{}r@{}}Absolute bolo- \\ metric magnitude\end{tabular} & Luminosity, $[W]$  & Temperature, $[K]$ & Radius of star, $[m]$ \\ \midrule
+			* J Vel      & 0.084 & 0.084 & 3.995E+28 & 176 & 2.890E+08 \\
+			HD 16769     & 0.024 & 0.024 & 5.538E+26 & 156 & 8.269E+07 \\
+			HD 176095    & 0.011 & 0.011 & 3.384E+25 & 87  & 4.265E+07 \\
+			HD 154857    & 0.011 & 0.011 & 1.957E+25 & 49  & 2.809E+07 \\
+			V* V1147 Tau & 0.012 & 0.012 & 3.497E+23 & 29  & 4.854E+06 \\
+			L 923-22     & 0.010 & 0.010 & 8.229E+22 & 21  & 2.740E+06
+		\end{tabular}
+		}
+	\end{table}
+	\begin{table}[h!]
+		\caption{Dyson Ring Properties Calculations Uncertainties}
+		\label{tab7:dyson_ring_properties_unc}
+		\resizebox{\textwidth}{!}{
+		\begin{tabular}{@{}lrrr@{}} \toprule
+			SIMBAD Name & Dyson ring orbit radius, $[m]$ & Satellite surface area, $m^2$ & Number of satellites \\ \midrule
+			* J Vel      & 2.455E+10 & 5.473E+06 & 153506 \\
+			HD 16769     & 7.025E+09 & 4.026E+05 & 43919  \\
+			HD 176095    & 3.623E+09 & 6.134E+03 & 22652  \\
+			HD 154857    & 2.386E+09 & 1.051E+04 & 14917  \\
+			V* V1147 Tau & 4.124E+08 & 4.992E+03 & 2578   \\
+			L 923-22     & 2.327E+08 & 3.159E+03 & 1455  
+		\end{tabular}
+		}
+	\end{table}
+	
+	\begin{table}[h!]
 		\caption{Power Properties Calculations Uncertainties}
 		\label{tab8:energy_unc}
 		\resizebox{\textwidth}{!}{
@@ -402,4 +381,24 @@
 		\end{tabular}
 		}
 	\end{table}
+	To find a relation between the temperature and the power incident, I have plotted the data points on the graph and drawn the best-fit lines. The best-fit line equation with  (coefficient of determination) closest to 1 and sensible data predictions would be chosen as the most accurate. \Cref{fig6:best_fit_lines} demonstrates the regressions considered, which are linear, exponential and quadratic, as, with only 6 data points, a problem of overfitting might arise with cubic and quartic formulas.
+	\begin{figure}[h!]
+		\centering
+		\caption{Three Types of Regressions of Energy per Solar Panel versus the Star Temperature}
+		\fitfigure[width=1.0\textwidth]{Best_Fit_Lines}
+		\figurenote{The figure demonstrates the graphs of three best-fit lines. The dots on the graph represent the data points. First graph is a linear regression, second is the quadratic, and third is the exponential. Adapted from \cite{desmos_desmos_2020, wolfram_research_inc_wolframalpha_2020}}
+		\label{fig6:best_fit_lines}
+	\end{figure}
+	Although the quadratic regression has the greatest $R^2$ of the three, it can be seen that it approaches a non-zero value with near-zero temperatures. Therefore, it cannot be considered a valid model of the solar panel power output, as no energy can be extracted from the absence of a star. As for the linear model, it has the lowest $R^2$ of the three and goes into negatives at around 4400 Kelvin, which does not make physical sense. Finally, the exponential function does get relatively close to the origin at (0, 0) and does not go into negative values. Moreover, the coefficient of determination is very close to 1. Consequently, it shall be considered the appropriate model for the relation.
+	\section{Conclusion and Evaluation}
+	From the relation found, a few conclusions can be drawn. Firstly, the energy collected by a single solar panel grows much quicker than the temperature, as they are related by an exponential formula. For example, when considering a pair of stars with temperatures of 4000 and 8000, respectively, the difference between the energy collected is almost eight times. Therefore, at first glance, it is much more efficient to build a Dyson Ring around a hotter, B or A-class star. However, such hot stars are scarce in the universe, and because of their temperature, their lifespan is very short, at around 40 million years. Moreover, the amount of the building material needed for constructing a structure enveloping this big of a star would be prodigious. Because of that, for a more permanent solution, a K or G class star would be a better fit. There is an abundance of them in the universe, they are much smaller, and their lifespan is immeasurably longer at around 20 to 70 billion years. They emit their energy at a slower rate, but for far longer, which makes them an excellent fit for an interstellar species, which humanity might become one day.
+	
+	The uncertainties of the final results are tolerable at the scales considered, with 4-18 per cent on energy collected and 0.5-2 on the star temperature. The primary source of them is the distance uncertainty, which gets bigger the further the star is from the Earth.
+	
+	This investigation is reliable to an extent, and its scope is mostly limited by the lack of data on other types of stellar objects. For example, I was unable to find an O, M or L class star with values and uncertainties present for their distances and magnitudes. Some other types of stars were not considered, such as T and Y class dwarves, as there is not enough information to proceed with calculations. Other inaccuracies present might be due to double-digit precision of bolometric correction and proven applicability of Ballesteros' formula only to colder stars. In the future, I would like to improve on this investigation by using new and improved data and methods.
+	
+	Furthermore, the investigation could have been improved by selecting more than one specimen of every star classes. For example, two more could have been chosen with 2-3 and 7-8 spectral subclasses to account for stars one the border of their classes. Expanded selection would have brought the total number of data points to 18, which would significantly raise the accuracy of the model.
+	
+	For further research, I created a spreadsheet document that can batch process the calculations of values and uncertainties given the star data, which allows for quick and easy investigation expansion. The graphs are updated in real-time and recreate a best-fit line with each new star added. The document gives me the ability to refine the model and make conclusions from it.
+	\printbibliography
 \end{document}
